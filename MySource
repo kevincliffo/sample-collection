@@ -1,0 +1,121 @@
+##COLLECTION CLASS ##
+
+class Father(object):
+    def __init__(self):
+        self._Name = None
+        self._Age = None
+        self._Sons = []
+        
+    def __iter__(self):
+        for item in self._Sons:
+            yield item
+
+    def AddSon(self, ssKey):
+        self._Son = Son()
+        self._Sons.append(self._Son)
+        self._Son.Name = ssKey
+        self._Son.ParentIsFather = self
+        return self._Son
+    
+    def _getName(self):
+        return self._Name
+
+    def _setName(self, value):
+        self._Name = value
+
+    def _getAge(self):
+        return self._Age
+
+    def _setAge(self, value):
+        self._Age = value
+
+    def ItemIsSon(self, ssKey):
+        for son in self._Sons:
+            if ssKey == son.Name:
+                return son
+        return None
+
+    def _getSons(self):
+        return self._Sons
+    
+    Name = property(_getName, _setName)
+    Age = property(_getAge, _setAge)
+    Sons = property(_getSons)
+
+class Son(object):
+    def __init__(self):
+        self._Name = None
+        self._Age = None
+        self._Parent = None
+        self._GrandSons = []
+        
+    def __iter__(self):
+        for item in self._GrandSons:
+            yield item
+
+    def AddGrandSon(self, ssKey):
+        self._GrandSon = GrandSon()
+        self._GrandSons.append(self._GrandSon)
+        self._GrandSon.Name = ssKey
+        self._GrandSon.ParentIsSon = self        
+        return self._GrandSon
+    
+    def _getName(self):
+        return self._Name
+
+    def _setName(self, value):
+        self._Name = value
+
+    def _getAge(self):
+        return self._Age
+
+    def _setAge(self, value):
+        self._Age = value
+
+    def _getParent(self):
+        return self._Parent
+
+    def _setParent(self, value):
+        self._Parent = value
+
+    def ItemIsGrandSon(self, ssKey):
+        for grandson in self._GrandSons:
+            if ssKey == grandson.Name:
+                return grandson
+        return None
+
+    def _getGrandSons(self):
+        return self._GrandSons
+    
+    Name = property(_getName, _setName)
+    Age = property(_getAge, _setAge)
+    ParentIsFather = property(_getParent, _setParent)
+    GrandSons = property(_getGrandSons) 
+    
+class GrandSon(object):
+    def __init__(self):
+        self._Name = None
+        self._Age = None
+        self._Parent = None
+
+    def _getName(self):
+        return self._Name
+
+    def _setName(self, value):
+        self._Name = value
+
+    def _getAge(self):
+        return self._Age
+
+    def _setAge(self, value):
+        self._Age = value
+
+    def _getParent(self):
+        return self._Parent
+
+    def _setParent(self, value):
+        self._Parent = value
+        
+    Name = property(_getName, _setName)
+    Age = property(_getAge, _setAge)
+    ParentIsSon = property(_getParent, _setParent)
