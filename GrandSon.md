@@ -1,0 +1,1 @@
+Sample collection class hierarchy

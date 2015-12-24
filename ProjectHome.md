@@ -1,0 +1,1 @@
+A simple collection class of a family hierarchy i.e Father, Son and GrandSon
